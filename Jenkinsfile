@@ -6,7 +6,7 @@ pipeline {
     // environmental block
     environment {
         // key = value > ${key}
-        name = "Siva"
+        name = "agnes"
         course = "Devops Engineer Program"
     }
 
