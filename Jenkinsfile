@@ -11,7 +11,10 @@ pipeline {
         SONAR_URL = "sonar.hsbc.com"
        // cloud = "GCP"
 
-       SONAR_TOKEN = "123456789"
+        // the below is wrong
+       //SONAR_TOKEN = "123456789"
+
+       SONAR_CREDS  = credentials('sonar_creds')
     }
 
     stages { //highes precendence
@@ -34,7 +37,7 @@ pipeline {
                 echo "Second stage: Welcome ${name}"
                 echo "Second stage: You enrolled to ${course}"
                 echo "My admission number is ${admission_no}"
-                echo "Printing my token: ${SONAR_TOKEN}"
+                echo "Printing my token: ${SONAR_CREDS}"
             }
         }
 
