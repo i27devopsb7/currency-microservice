@@ -16,6 +16,7 @@ pipeline {
         stage ('FirstStage') {
             environment {
                 cloud = "GCP"
+                name = "Mahesh babu"
             }
             steps {
                 echo "Welcome ${name}"
@@ -27,7 +28,6 @@ pipeline {
             steps {
                 echo "Second stage: Welcome ${name}"
                 echo "Second stage: You enrolled to ${course}"
-                echo "Second stage: You are certified in ${cloud} Cloud"
             }
         }
 
