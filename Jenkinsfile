@@ -8,11 +8,13 @@ pipeline {
         // key = value > ${key}
         name = "agnes"
         course = "Devops Engineer Program"
-
+        SONAR_URL = "sonar.hsbc.com"
        // cloud = "GCP"
+
+       SONAR_TOKEN = "123456789"
     }
 
-    stages {
+    stages { //highes precendence
         stage ('FirstStage') {
             environment {
                 cloud = "GCP"
@@ -25,11 +27,17 @@ pipeline {
             }
         }
         stage ('SecondStage'){
+            environment{
+                admission_no = "12345"
+            }
             steps {
                 echo "Second stage: Welcome ${name}"
                 echo "Second stage: You enrolled to ${course}"
+                echo "My admission number is ${admission_no}"
+                echo "Printing my token: ${SONAR_TOKEN}"
             }
         }
 
     }
 }
+
