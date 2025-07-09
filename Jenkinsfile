@@ -2,26 +2,21 @@ pipeline {
     agent {
         label 'java-slave'
     }
+
+    // environmental block
+    environment {
+        // key = value > ${key}
+        name = "Siva"
+        course = "Devops Engineer Program"
+    }
+
     stages {
-        stage ('Build'){
+        stage ('FirstStage') {
             steps {
-                echo "Build stage from main Branch"
+                echo "Welcome ${name}"
+                echo "You enrolled to ${course}"
             }
         }
-        stage ('Scans'){
-            steps {
-                echo "Scans stage from main Branch"
-            }
-        }
-        stage ('dockerbuild'){
-            steps {
-                echo "docker stage from main Branch"
-            }
-        }
-        stage ('deployment'){
-            steps {
-                echo "deploying from main Branch"
-            }
-        }
+
     }
 }
