@@ -23,6 +23,13 @@ pipeline {
                 echo "You are certified in ${cloud} Cloud"
             }
         }
+        stage ('SecondStage'){
+            steps {
+                echo "Second stage: Welcome ${name}"
+                echo "Second stage: You enrolled to ${course}"
+                echo "Second stage: You are certified in ${cloud} Cloud"
+            }
+        }
 
     }
 }
