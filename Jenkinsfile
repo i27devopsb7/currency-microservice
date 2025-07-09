@@ -5,22 +5,32 @@ pipeline {
     stages {
         stage ('Build'){
             steps {
-                echo "Build stage from main Branch"
+                echo "Building the application"
             }
         }
         stage ('Scans'){
             steps {
-                echo "Scans stage from main Branch"
+                echo "Performing sonar scans"
             }
         }
         stage ('dockerbuild'){
             steps {
-                echo "docker stage from main Branch"
+                echo "Implementing docker build"
             }
         }
-        stage ('deployment'){
+        stage ('devenv'){
             steps {
-                echo "deploying from main Branch"
+                echo "deploying to dev env"
+            }
+        }
+        stage ('stageenv'){
+            steps {
+                echo "deploying to stage env"
+            }
+        }
+        stage ('prodenv'){
+            steps {
+                echo "deploying to prod env"
             }
         }
     }
