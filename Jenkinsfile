@@ -15,7 +15,9 @@ pipeline {
             // when {
             //     environment name: 'TODAYS_DAY', value: 'thursday'
             // }
-            expression { BRANCH_NAME ==~ /(prod|hotfix)/ }
+            when {
+                expression { BRANCH_NAME ==~ /(prod|hotfix)/ }
+            }
             // step block
             steps {
                 echo "executing pipeline for when example"
