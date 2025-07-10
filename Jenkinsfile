@@ -30,7 +30,11 @@ pipeline {
         }
         stage ('DeployToStageEnv'){
             when {
-                branch 'release-*'
+                anyOf {
+                    branch 'release-'
+                    tag pattern: "v\\d{1,2}.\\d{1,2}.\\d{1,2}", comparator: "REGEXP"
+                }
+
             }
             steps {
                 echo "*********** Deploying to stage environment ***********"
@@ -38,7 +42,7 @@ pipeline {
         }
         stage ('DeployToProdEnv'){
             when { //v1.0.0
-                tag pattern: "v\\d{1,2}.\\d{1,2}.\\d{1,2}"
+                tag pattern: "v\\d{1,2}.\\d{1,2}.\\d{1,2}", comparator: "REGEXP"
             }
             steps {
                 echo "*********** Deploying to Prod environment ***********"
