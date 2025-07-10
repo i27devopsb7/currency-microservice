@@ -1,26 +1,28 @@
-pipeline {
+pipeline{
     agent {
-        label 'java-slave'
+        label 'java-label'
     }
 
-    // environmental variables 
     environment {
-        TODAYS_DAY = 'thursday'
+        DEPLOY_TO = 'production'
     }
 
     stages {
-        stage('buildstage') {
-
-            // when condition 
-            // when {
-            //     environment name: 'TODAYS_DAY', value: 'thursday'
-            // }
-            when {
-                expression { BRANCH_NAME ==~ /(prod|main)/ }
-            }
-            // step block
+        stage ('DeploytoDev'){
             steps {
-                echo "executing pipeline for when example"
+                echo "Deploying to dev env"
+            }
+        }
+        stage ('ProdDeploy')
+        {
+            when {
+                allOf {
+                    branch 'production'
+                    environment name: 'DEPLOY_TO', value: 'production'
+                }
+            }
+            steps {
+                echo "*********** Deploying to production ***********"
             }
         }
     }
