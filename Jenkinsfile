@@ -5,7 +5,7 @@ pipeline {
 
     // environmental variables 
     environment {
-        TODAYS_DAY = 'thursday'
+        TODAYS_DAY = 'wednesday'
     }
     stages {
         stage('buildstage') {
