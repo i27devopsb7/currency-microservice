@@ -16,7 +16,7 @@ pipeline {
             //     environment name: 'TODAYS_DAY', value: 'thursday'
             // }
             when {
-                expression { BRANCH_NAME ==~ /(prod|hotfix)/ }
+                expression { BRANCH_NAME ==~ /(prod|main)/ }
             }
             // step block
             steps {
