@@ -3,44 +3,22 @@ pipeline {
         label 'java-slave'
     }
 
-    // environmental block
+    // environmental variables 
     environment {
-        // key = value > ${key}
-        name = "agnes"
-        course = "Devops Engineer Program"
-        SONAR_URL = "sonar.hsbc.com"
-       // cloud = "GCP"
-
-        // the below is wrong
-       //SONAR_TOKEN = "123456789"
-
-       SONAR_CREDS  = credentials('sonar_creds')
+        TODAYS_DAY = 'thursday'
     }
+    stages {
+        stage('buildstage') {
 
-    stages { //highes precendence
-        stage ('FirstStage') {
-            environment {
-                cloud = "GCP"
-                name = "Mahesh babu"
+            // when condition 
+            when {
+                environment name: 'TODAYS_DAY', value: 'thursday'
             }
+
+            // step block
             steps {
-                echo "Welcome ${name}"
-                echo "You enrolled to ${course}"
-                echo "You are certified in ${cloud} Cloud"
+                echo "executing pipeline for when example"
             }
         }
-        stage ('SecondStage'){
-            environment{
-                admission_no = "12345"
-            }
-            steps {
-                echo "Second stage: Welcome ${name}"
-                echo "Second stage: You enrolled to ${course}"
-                echo "My admission number is ${admission_no}"
-                echo "Printing my token: ${SONAR_CREDS}"
-            }
-        }
-
     }
 }
-
