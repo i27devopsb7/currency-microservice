@@ -30,6 +30,26 @@ pipeline {
                 }
             }
         }
-
+        stage ('DeployToDev') {
+            steps {
+                echo "Deploying to dev environment"
+                // k8s code
+            }
+        }
+        stage ('DeployToTest') {
+            steps {
+                echo "Deploying to test environment"
+            }
+        }
+        stage ('DeployToStage') {
+            steps {
+                echo "Deploying to Stage environment"
+            }
+        }
+        stage ('DeployToProd') {
+            steps {
+                echo "Deploying to Prod environment"
+            }
+        }
     }
 }
