@@ -11,7 +11,7 @@ pipeline {
 // // ${ENV_NAME}
 //     }
 
-    parametes {
+    parameters {
         string(name: 'APPLICATION_NAME', description: 'Enter your application name', defaultValue: 'i27App')
         booleanParam(name: 'RUN_TESTS', description: 'Woulr you like to run tests ?', defaultValue: true)
         choice(name: 'ENV', description: 'Which env should i be deploying ?', choices: ['dev', 'test', 'prod'])
