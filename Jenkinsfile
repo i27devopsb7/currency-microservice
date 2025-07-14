@@ -8,59 +8,19 @@ pipeline {
                 echo "Building the application"
             }
         }
-        stage ('Scans') {
-            parallel {
-                stage ('SonarScans') {
-                    steps {
-                        echo "Sonar scan is executing"
-                        sleep 15
-                    }
-                }
-                stage ('FortifyScans') {
-                    steps {
-                        echo "Fortify scan is executing"
-                        sleep 15
-                    }
-                }
-                stage ('PrismaScans') {
-                    steps {
-                        echo "Prisma scan is executing"
-                        sleep 15
-                    }
-                }
-            }
+    }
+    post {
+        success {
+            // code , will trigger only if the pipeline is succesfulle
+            echo "Post ==================> Success block is triggered"
         }
-        stage ('DeployToDev') {
-            steps {
-                echo "Deploying to dev environment"
-                // k8s code
-            }
+        failure {
+            // will trigger only if the pipeline is failed
+            echo "Post ==================> Failure block is triggered"
         }
-        stage ('DeployToTest') {
-            steps {
-                echo "Deploying to test environment"
-            }
-        }
-        stage ('DeployToStage') {
-            steps {
-                echo "Deploying to Stage environment"
-            }
-        }
-        stage ('DeployToProd') {
-            options {
-                timeout (time: 300, unit: 'SECONDS')
-            }
-            input {
-                message "Doing Prod Deployments ?"
-                ok 'yes'
-                submitter 'i27academy,rakeshdev' //who should be having access to approve 
-            }
-            steps {
-                echo "Deploying to Prod environment"
-                // timeout(time: 300, unit: 'SECONDS') {
-                //     input message: "Doing Prod Deployments ?", ok: 'yes', submitter: 'i27academy,rakeshdev'
-                // }
-            }
+        always {
+            // will trigger this block, irrespective of failure or sucess
+            echo "Post ==================> always block is triggered"
         }
     }
 }
